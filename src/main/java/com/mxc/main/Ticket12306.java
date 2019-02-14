@@ -1,7 +1,5 @@
 package com.mxc.main;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +56,7 @@ public class Ticket12306 {
 	/**
 	 * 
 	 * 功能描述:通过谷歌浏览器购票
-	 * 作者:马晓晨
+	 * 作者:mxc
 	 * 创建时间:2019年1月24日 下午6:28:53
 	 * @param ticket
 	 */
@@ -70,12 +68,6 @@ public class Ticket12306 {
 	}
 	
 	private void purchaseTicket(Ticket ticket, WebDriver driver) {
-//		System.setProperty("webdriver.chrome.driver", "D:\\Workspaces\\timebank\\12306-java\\src\\main\\java\\chromedriver.exe");
-/*		String linktypeid = "dc";
-		String fs = "麻城北,MBN";
-		String ts = "杭州东,HGH";*/
-//		String data = "2019-02-10";
-//		String flag = "N,N,Y";
 		String baseUrl = "https://kyfw.12306.cn/otn/leftTicket/init?linktypeid=%s&fs=%s&ts=%s&date=%s&flag=%s";
 		String url = String.format(baseUrl, ticket.getLinktypeid(), ticket.getFs(), ticket.getTs(), ticket.getDate(), ticket.getFlag());
 		
@@ -128,7 +120,6 @@ public class Ticket12306 {
 				WebElement loginImg = driver.findElement(By.id("J-loginImg"));
 				String base64Img = loginImg.getAttribute("src");
 				Base64Util.decodeImage(base64Img.split(",")[1], "/login.png");
-				int x1 = loginImg.getLocation().getX();
 			    //像素点的二元数组  将12306验证码图片下载下来，使用ps软件（有在线软件）打开，查看8张小图片的像素点，将这8个像素点写入进数组中
 				int[][] pointArray = {{15,67}, {116,72}, {204,67}, {300,75}, {24,159}, {120,157}, {205,157}, {301,151}};
 				String result = YdmUtil.decode("/login.png", 6701);
@@ -152,7 +143,7 @@ public class Ticket12306 {
 					}
 				}
 				//选择乘客
-				driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id(AppConstant.normalPassenger))).click();
+				driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id(AppConstant.NORMALPASSENGER))).click();
 				//提交订单
 				driver.findElement(By.id("submitOrder_id")).click();
 				//确认
