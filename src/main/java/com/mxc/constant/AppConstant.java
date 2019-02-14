@@ -38,5 +38,5 @@ public interface AppConstant {
 	/**
 	 * 第几位乘客 从0开始 normalPassenger_0 代表第一位   normalPassenger_1 代表第二位
 	 */
-	public String normalPassenger = "normalPassenger_0";
+	public String NORMALPASSENGER = "normalPassenger_0";
 }
